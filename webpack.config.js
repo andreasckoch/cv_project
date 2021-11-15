@@ -60,7 +60,7 @@ module.exports = {
       events: require.resolve("events/"),
       stream: require.resolve("stream-browserify/"),
       util: require.resolve("util/"),
-    },
+    }
   },
   output: {
     filename: "index.js",
@@ -77,6 +77,9 @@ module.exports = {
   //    { test: /\.(ts|tsx|jsx)$/, loader: "ts-loader" },
   //    { test: /\.css$/, use: ['style-loader','css-loader'] }
   //  ]
+  // },
+  // externals: {
+  //   "jquery": "jQuery",
   // },
   plugins: [
     new HtmlWebpackPlugin({
@@ -98,6 +101,10 @@ module.exports = {
     new webpack.ProvidePlugin({
       Buffer: [require.resolve("buffer/"), "Buffer"],
       process: require.resolve("process/browser"),
+    }),
+    new webpack.ProvidePlugin({
+      $: "jquery",
+      jQuery: "jquery"
     }),
   ],
   // proxy /api to port 8000 during development
